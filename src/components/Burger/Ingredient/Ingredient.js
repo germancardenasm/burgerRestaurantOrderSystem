@@ -4,7 +4,7 @@ import './Ingredient.css'
 
 const ingredient = (props) => {
     let ingredient = null;
-    let classname = "bread_bottom"
+    let classname = props.type;
     ingredient= <div className={classname}>.</div>;
     return (
         <Aux>

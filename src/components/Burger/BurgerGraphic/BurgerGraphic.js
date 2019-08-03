@@ -6,7 +6,7 @@ const BurgerGraphic = () => {
     return (
         <div className='burger'>
             <p>This is the burger graphics</p>
-            <Ingredient />
+            <Ingredient type="bread_bottom"/>
         </div>
     )
 }
