@@ -4,10 +4,10 @@ import "./Control.css";
 const Control = props => {
   return (
     <div className="control">
-      <h5>SALAD</h5>
+      <span className="ing_name">{props.type}</span>
       <button className="control_button">Less</button>
       <button className="control_button">More</button>
-      <p>1</p>
+      <span className="ing_qty">{props.qty}</span>
     </div>
   );
 };

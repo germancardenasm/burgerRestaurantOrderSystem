@@ -18,7 +18,7 @@ export default class BurgerBuilder extends Component {
     return (
       <Aux>
         <BurgerGraphic ingredients={this.state.ingredients} />
-        <BuildControls />
+        <BuildControls ingredients={this.state.ingredients} />
       </Aux>
     );
   }
