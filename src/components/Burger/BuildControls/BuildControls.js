@@ -4,7 +4,13 @@ import "./BuildControls.css";
 const BuildControls = props => {
   const controlsArray = Object.keys(props.ingredients).map(ingType => {
     return (
-      <Control type={ingType} qty={props.ingredients[ingType]} key={ingType} />
+      <Control
+        type={ingType}
+        qty={props.ingredients[ingType]}
+        key={ingType}
+        addIngredients={props.addIngredients}
+        removeIngredients={props.removeIngredients}
+      />
     );
   });
 
