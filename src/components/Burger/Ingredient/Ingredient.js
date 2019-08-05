@@ -5,12 +5,11 @@ import './Ingredient.css'
 const ingredient = (props) => {
     let ingredient = null;
     let classname = props.type;
-    ingredient= <div className={classname}>.</div>;
+    ingredient= <div className={classname} />;
     return (
         <Aux>
             {ingredient}
         </Aux>
-       
     )
 }
 

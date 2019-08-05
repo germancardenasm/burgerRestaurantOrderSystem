@@ -4,7 +4,7 @@ import Aux from '../../hoc/Aux'
 const Layout = (props) => {
     return (
         <Aux>
-            <div>logo  burger  orders checkout</div>
+            <div>[NAVBAR] logo  burger  orders checkout</div>
             <main>
                 {props.children}
             </main>
