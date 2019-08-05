@@ -1,0 +1,7 @@
+.build_controls {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    width: 100%;
+    background-color: #4ba3c3;
+}
