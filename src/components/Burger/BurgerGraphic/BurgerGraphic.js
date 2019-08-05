@@ -10,7 +10,7 @@ const BurgerGraphic = () => {
             <Ingredient type="salad"/>
             <Ingredient type="chesee"/>
             <Ingredient type="bacon"/>
-            <Ingredient type="meat"/>
+            <Ingredient type={2}/>
             <Ingredient type="bread_bottom"/>
         </div>
     )

@@ -1,16 +1,20 @@
 import React from 'react';
 import Aux from '../../../hoc/Aux'
+import PropTypes from 'prop-types'
 import './Ingredient.css'
 
 const ingredient = (props) => {
-    let ingredient = null;
     let classname = props.type;
-    ingredient= <div className={classname} />;
+    let ingredient= <div className={classname} />;
     return (
         <Aux>
             {ingredient}
         </Aux>
     )
+}
+
+ingredient.propTypes = {
+    type: PropTypes.string
 }
 
 export default ingredient
