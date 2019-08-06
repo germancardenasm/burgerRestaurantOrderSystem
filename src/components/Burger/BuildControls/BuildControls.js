@@ -8,13 +8,18 @@ const BuildControls = props => {
         type={ingType}
         qty={props.ingredients[ingType]}
         key={ingType}
-        addIngredients={props.addIngredients}
-        removeIngredients={props.removeIngredients}
+        addIngredients={() => props.addIngredients(ingType)}
+        removeIngredients={() => props.removeIngredients(ingType)}
       />
     );
   });
 
-  return <div className="build_controls">{controlsArray}</div>;
+  return (
+    <div className="build_controls">
+      <p>Current Price: ${props.price.toFixed(2)}</p>
+      {controlsArray}
+    </div>
+  );
 };
 
 export default BuildControls;
