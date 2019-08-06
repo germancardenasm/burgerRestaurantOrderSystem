@@ -6,7 +6,6 @@ import Modal from "../../components/UI/Modal/Modal";
 import prices from "../../assets/prices";
 import "./BurgerBuilder.css";
 import OrderSumary from "../../components/OrderSumary/OrderSumary";
-import { stat } from "fs";
 
 export default class BurgerBuilder extends Component {
   state = {
@@ -66,10 +65,14 @@ export default class BurgerBuilder extends Component {
     this.setState({ purchasing: true });
   };
 
+  purchaseCancelHandler = () => {
+    this.setState({ purchasing: false });
+  };
+
   render() {
     return (
       <Aux>
-        <Modal show={this.state.purchasing}>
+        <Modal show={this.state.purchasing} close={this.purchaseCancelHandler}>
           <OrderSumary {...this.state} />
         </Modal>
 

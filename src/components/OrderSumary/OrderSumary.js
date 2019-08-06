@@ -4,7 +4,7 @@ import Aux from "../../hoc/Aux";
 const OrderSumary = props => {
   const ingredientSummary = Object.keys(props.ingredients).map(ing => {
     return (
-      <li>
+      <li key={ing}>
         {ing}: {props.ingredients[ing]}
       </li>
     );
