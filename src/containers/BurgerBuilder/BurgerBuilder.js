@@ -69,11 +69,10 @@ export default class BurgerBuilder extends Component {
   render() {
     return (
       <Aux>
-        {this.state.purchasing ? (
-          <Modal>
-            <OrderSumary {...this.state} />
-          </Modal>
-        ) : null}
+        <Modal show={this.state.purchasing}>
+          <OrderSumary {...this.state} />
+        </Modal>
+
         <BurgerGraphic ingredients={this.state.ingredients} />
         <BuildControls
           {...this.state}
