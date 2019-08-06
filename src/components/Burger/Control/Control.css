@@ -1,6 +1,6 @@
 .control {
     display: flex;
-    width: 290px;
+    width: 258px;
     margin: 0.5rem auto;
     align-items: center;
     justify-content: space-between;
@@ -33,10 +33,11 @@ button:focus {
 
 .control .ing_name {
     display: inline-block;
+    text-align: left;
     width: 70px;
 }
 
 .control .ing_qty {
     display: inline-block;
-    margin: 0 1rem;
+
 }

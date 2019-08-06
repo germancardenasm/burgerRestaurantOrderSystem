@@ -1,16 +1,17 @@
 import React from "react";
+import Button from "../../UI/Button/Button";
 import "./Control.css";
 
 const Control = props => {
   return (
     <div className="control" id={props.type}>
       <span className="ing_name bold">{props.type}</span>
-      <button className="control_button" onClick={props.removeIngredients}>
+      <Button className="control_button" click={props.removeIngredients}>
         Less
-      </button>
-      <button className="control_button" onClick={props.addIngredients}>
+      </Button>
+      <Button className="control_Button" click={props.addIngredients}>
         More
-      </button>
+      </Button>
       <span className="ing_qty bold">{props.qty}</span>
     </div>
   );
