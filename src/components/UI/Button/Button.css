@@ -2,6 +2,7 @@
     height: 35px;
     margin: 0.3rem;
     font: inherit;
+    font-weight: bold;
     cursor: pointer;
     color: black;
     text-transform: uppercase;
@@ -19,4 +20,14 @@
 
 button:focus {
     outline: 0;
+}
+
+.success {
+    background: green;
+    color: white;
+}
+
+.danger {
+    background: red;
+    color: white;
 }
