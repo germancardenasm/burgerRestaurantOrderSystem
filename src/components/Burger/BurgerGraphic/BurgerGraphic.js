@@ -17,7 +17,11 @@ const BurgerGraphic = props => {
   return (
     <div className="burger">
       <Ingredient type="bread_top" />
-      {ingCompArr.length ? ingCompArr : <p>Let's add some ingredients</p>}
+      {ingCompArr.length ? (
+        ingCompArr
+      ) : (
+        <p className="bold">Let's add some ingredients</p>
+      )}
       <Ingredient type="bread_bottom" />
     </div>
   );

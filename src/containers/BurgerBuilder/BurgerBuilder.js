@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import BurgerGraphic from "../../components/Burger/BurgerGraphic/BurgerGraphic";
 import Aux from "../../hoc/Aux";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import Modal from "../../components/UI/Modal/Modal";
 import prices from "../../assets/prices";
 import "./BurgerBuilder.css";
+import OrderSumary from "../../components/OrderSumary/OrderSumary";
+import { stat } from "fs";
 
 export default class BurgerBuilder extends Component {
   state = {
@@ -14,31 +17,32 @@ export default class BurgerBuilder extends Component {
       meat: 0
     },
     price: 2.5,
-    purchaseAvailable: false
+    purchaseAvailable: false,
+    purchasing: false
   };
 
-  addIngredients = e => {
+  addIngredients = ing => {
     this.setState(
       (state, props) => ({
         ingredients: {
           ...state.ingredients,
-          [e]: state.ingredients[e] + 1
+          [ing]: state.ingredients[ing] + 1
         },
-        price: state.price + prices[e]
+        price: state.price + prices[ing]
       }),
       () => this.setPurchaseAvailability()
     );
   };
 
-  removeIngredients = e => {
-    if (this.state.ingredients[e] === 0) return;
+  removeIngredients = ing => {
+    if (this.state.ingredients[ing] === 0) return;
     this.setState(
       (state, props) => ({
         ingredients: {
           ...state.ingredients,
-          [e]: state.ingredients[e] - 1
+          [ing]: state.ingredients[ing] - 1
         },
-        price: state.price - prices[e]
+        price: state.price - prices[ing]
       }),
       () => this.setPurchaseAvailability()
     );
@@ -58,14 +62,24 @@ export default class BurgerBuilder extends Component {
     }
   };
 
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
+  };
+
   render() {
     return (
       <Aux>
+        {this.state.purchasing ? (
+          <Modal>
+            <OrderSumary {...this.state} />
+          </Modal>
+        ) : null}
         <BurgerGraphic ingredients={this.state.ingredients} />
         <BuildControls
           {...this.state}
-          addIngredients={ing => this.addIngredients(ing)}
-          removeIngredients={ing => this.removeIngredients(ing)}
+          addIngredients={this.addIngredients}
+          removeIngredients={this.removeIngredients}
+          purchase={this.purchaseHandler}
         />
       </Aux>
     );

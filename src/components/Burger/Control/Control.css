@@ -1,7 +1,9 @@
 .control {
     display: flex;
+    width: 290px;
     margin: 0.5rem auto;
     align-items: center;
+    justify-content: space-between;
     text-transform: uppercase;
 }
 
@@ -15,10 +17,9 @@
     text-transform: uppercase;
     background: #cce6f4;
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 5px;
     display: inline-block;
     transition: all 0.3s ease 0s;
-    font-weight: bold;
 }
 
 .control .control_button:hover {
@@ -37,5 +38,5 @@ button:focus {
 
 .control .ing_qty {
     display: inline-block;
-    margin: 1rem;
+    margin: 0 1rem;
 }
