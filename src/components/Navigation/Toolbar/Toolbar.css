@@ -12,7 +12,7 @@
     height: 100%;
 }
 
-@media (max-width:499px) {
+@media (max-width:599px) {
     .desktop_nav {
         display: none;
     }

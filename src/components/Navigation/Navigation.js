@@ -4,7 +4,7 @@ import Sidedrawer from "../Navigation/Sidedrawer/Sidedrawer";
 
 export default class Navigation extends Component {
   state = {
-    sideShow: true
+    sideShow: false
   };
 
   toogleSidedrawer = () => {

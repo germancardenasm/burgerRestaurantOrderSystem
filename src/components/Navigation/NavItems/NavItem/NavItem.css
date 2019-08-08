@@ -24,7 +24,7 @@
 }
 
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
     .nav_item {
         height: 100%;
         width: auto;
