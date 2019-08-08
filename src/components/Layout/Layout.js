@@ -1,12 +1,12 @@
 import React from "react";
 import Aux from "../../hoc/Aux";
-import Navigation from "../Navigation/Navigation";
+import NavMenus from "../../containers/NavMenus/NavMenus";
 import "./Layout.css";
 
 const Layout = props => {
   return (
     <Aux className="layout">
-      <Navigation />
+      <NavMenus />
       <main>{props.children}</main>
     </Aux>
   );
