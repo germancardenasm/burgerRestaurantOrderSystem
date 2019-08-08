@@ -1,5 +1,4 @@
-.navbar {
-    margin-bottom: 1rem;
-    border: 1px solid;
-    padding: 0.5rem;
+.layout {
+    height: 100%;
+    overflow: hidden;
 }

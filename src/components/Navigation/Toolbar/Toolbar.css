@@ -1,0 +1,19 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    color: white;
+    background: #4ba3c3;
+    padding: 0 0.5rem;
+}
+
+.toolbar .desktop_nav {
+    height: 100%;
+}
+
+@media (max-width:499px) {
+    .desktop_nav {
+        display: none;
+    }
+}

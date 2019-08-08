@@ -1,0 +1,25 @@
+.toogle_btn {
+    height: 65%;
+    width: 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    margin: 0 8px;
+}
+
+.toogle_btn div {
+    width: 90%;
+    height: 3px;
+    background: white;
+    border-radius: 1px;
+}
+
+
+@media (min-width: 500px) {
+    .toogle_btn {
+        display: none;
+    }
+}

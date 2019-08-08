@@ -1,0 +1,35 @@
+.sidedrawer {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 280px;
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    color: white;
+    background: white;
+    z-index: 900;
+    transition: transform 0.2s ease-out;
+}
+
+.sidedrawer .logo_container {
+    width: 30%;
+    height: 60px;
+    margin: 1rem auto;
+}
+
+.open {
+    transform: translateX(0)
+}
+
+.close {
+    transform: translateX(-100%)
+}
+
+@media (min-width: 500px) {
+
+    .sidedrawer {
+        display: none;
+    }
+}

@@ -1,0 +1,12 @@
+.logo {
+    vertical-align: middle;
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.logo img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
