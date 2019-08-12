@@ -7,6 +7,7 @@ import prices from "../../assets/prices";
 import "./BurgerBuilder.css";
 import OrderSumary from "../../components/OrderSumary/OrderSumary";
 import axios from "../../order-axios";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 export default class BurgerBuilder extends Component {
   state = {
@@ -18,7 +19,8 @@ export default class BurgerBuilder extends Component {
     },
     price: 2.5,
     purchaseAvailable: false,
-    purchasing: false
+    purchasing: false,
+    loading: false
   };
 
   addIngredients = ing => {
@@ -72,6 +74,7 @@ export default class BurgerBuilder extends Component {
 
   placeOrder = () => {
     console.log("purchase");
+    this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.price,
@@ -87,19 +90,39 @@ export default class BurgerBuilder extends Component {
     };
     axios
       .post("/orders.json", order)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+      .then(res =>
+        setTimeout(
+          () =>
+            this.setState({
+              loading: false,
+              purchasing: false
+            }),
+          1000
+        )
+      )
+      .catch(error =>
+        this.setState({
+          loading: false,
+          purchasing: false
+        })
+      );
   };
 
   render() {
+    let orderSumary = (
+      <OrderSumary
+        {...this.state}
+        close={this.purchaseCancelHandler}
+        purchase={this.placeOrder}
+      />
+    );
+    if (this.state.loading) {
+      orderSumary = <Spinner />;
+    }
     return (
       <Aux>
         <Modal show={this.state.purchasing} close={this.purchaseCancelHandler}>
-          <OrderSumary
-            {...this.state}
-            close={this.purchaseCancelHandler}
-            purchase={this.placeOrder}
-          />
+          {orderSumary}
         </Modal>
 
         <BurgerGraphic ingredients={this.state.ingredients} />
