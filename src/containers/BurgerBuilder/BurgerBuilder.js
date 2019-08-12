@@ -6,6 +6,7 @@ import Modal from "../../components/UI/Modal/Modal";
 import prices from "../../assets/prices";
 import "./BurgerBuilder.css";
 import OrderSumary from "../../components/OrderSumary/OrderSumary";
+import axios from "../../order-axios";
 
 export default class BurgerBuilder extends Component {
   state = {
@@ -71,7 +72,23 @@ export default class BurgerBuilder extends Component {
 
   placeOrder = () => {
     console.log("purchase");
-    this.setState({ purchasing: false });
+    const order = {
+      ingredients: this.state.ingredients,
+      price: this.state.price,
+      customer: {
+        name: "German",
+        address: {
+          street: "Street Colombia",
+          zip: "12345",
+          city: "Envigado"
+        },
+        email: "myemail@mail.com"
+      }
+    };
+    axios
+      .post("/orders.json", order)
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
   };
 
   render() {
