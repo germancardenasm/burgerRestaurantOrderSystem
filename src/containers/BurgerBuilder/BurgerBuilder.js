@@ -69,11 +69,20 @@ export default class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
 
+  placeOrder = () => {
+    console.log("purchase");
+    this.setState({ purchasing: false });
+  };
+
   render() {
     return (
       <Aux>
         <Modal show={this.state.purchasing} close={this.purchaseCancelHandler}>
-          <OrderSumary {...this.state} close={this.purchaseCancelHandler} />
+          <OrderSumary
+            {...this.state}
+            close={this.purchaseCancelHandler}
+            purchase={this.placeOrder}
+          />
         </Modal>
 
         <BurgerGraphic ingredients={this.state.ingredients} />

@@ -20,7 +20,7 @@ const OrderSumary = props => {
       <Button click={props.close} type={"danger"}>
         CANCEL
       </Button>
-      <Button click={null}>CONTINUE</Button>
+      <Button click={props.purchase}>CONTINUE</Button>
     </Aux>
   );
 };
