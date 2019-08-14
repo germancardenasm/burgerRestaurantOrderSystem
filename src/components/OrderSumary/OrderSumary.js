@@ -3,13 +3,17 @@ import Aux from "../../hoc/Aux";
 import Button from "../UI/Button/Button";
 
 const OrderSumary = props => {
-  const ingredientSummary = Object.keys(props.ingredients).map(ing => {
-    return (
-      <li key={ing}>
-        {ing}: {props.ingredients[ing]}
-      </li>
-    );
-  });
+  let ingredientSummary = null;
+
+  if (props.ingredients) {
+    ingredientSummary = Object.keys(props.ingredients).map(ing => {
+      return (
+        <li key={ing}>
+          {ing}: {props.ingredients[ing]}
+        </li>
+      );
+    });
+  }
 
   return (
     <Aux>

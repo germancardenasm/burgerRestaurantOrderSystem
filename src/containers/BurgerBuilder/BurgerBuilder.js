@@ -11,17 +11,21 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 
 export default class BurgerBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      cheese: 0,
-      bacon: 0,
-      meat: 0
-    },
+    ingredients: null,
     price: 2.5,
     purchaseAvailable: false,
     purchasing: false,
     loading: false
   };
+
+  componentDidMount() {
+    axios
+      .get("https://burgerbuilder-gc.firebaseio.com/ingredients.json")
+      .then(response => {
+        console.dir("REPONSE", response);
+        this.setState({ ingredients: response.data });
+      });
+  }
 
   addIngredients = ing => {
     this.setState(
@@ -119,19 +123,29 @@ export default class BurgerBuilder extends Component {
     if (this.state.loading) {
       orderSumary = <Spinner />;
     }
+
+    let burgerComponentes = <Spinner />;
+
+    if (this.state.ingredients) {
+      burgerComponentes = (
+        <Aux>
+          <BurgerGraphic ingredients={this.state.ingredients} />
+          <BuildControls
+            {...this.state}
+            addIngredients={this.addIngredients}
+            removeIngredients={this.removeIngredients}
+            purchase={this.purchaseHandler}
+          />
+        </Aux>
+      );
+    }
+
     return (
       <Aux>
         <Modal show={this.state.purchasing} close={this.purchaseCancelHandler}>
           {orderSumary}
         </Modal>
-
-        <BurgerGraphic ingredients={this.state.ingredients} />
-        <BuildControls
-          {...this.state}
-          addIngredients={this.addIngredients}
-          removeIngredients={this.removeIngredients}
-          purchase={this.purchaseHandler}
-        />
+        {burgerComponentes}
       </Aux>
     );
   }
