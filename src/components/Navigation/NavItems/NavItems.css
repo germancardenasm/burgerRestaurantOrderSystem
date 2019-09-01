@@ -8,9 +8,53 @@
     box-sizing: border-box;
 }
 
+
+.nav_item {
+    margin: 1rem 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    width: 100%;
+}
+
+.nav_item a {
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    color: black;
+}
+
+.nav_item a:visited {
+    color: black;
+}
+
+.nav_item:hover,
+.nav_item.active,
+.nav_item .active {
+    background: #408da8;
+}
+
+
 @media (min-width: 600px) {
     .nav_items {
         flex-flow: row;
         align-items: center;
+    }
+
+    .nav_item {
+        height: 100%;
+        width: auto;
+        margin: 0 0.5rem;
+        font-weight: bold;
+    }
+
+    .nav_item a {
+        color: white;
+    }
+
+    .nav_item a:visited {
+        color: white;
     }
 }
