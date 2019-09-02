@@ -13,7 +13,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 class BurgerBuilder extends Component {
 	state = {
 		ingredients: null,
-		price: 2.5,
+		price: 0,
 		purchaseAvailable: false,
 		purchasing: false,
 		loading: false,
@@ -82,44 +82,13 @@ class BurgerBuilder extends Component {
 	};
 
 	placeOrder = () => {
-		/* this.setState({ loading: true });
-		const order = {
-			ingredients: this.state.ingredients,
-			price: this.state.price,
-			customer: {
-				name: 'German',
-				address: {
-					street: 'Street Colombia',
-					zip: '12345',
-					city: 'Envigado'
-				},
-				email: 'myemail@mail.com'
-			}
-		};
-		axios
-			.post('/orders.json', order)
-			.then(res =>
-				setTimeout(
-					() =>
-						this.setState({
-							loading: false,
-							purchasing: false
-						}),
-					1000
-				)
-			)
-			.catch(error =>
-				this.setState({
-					loading: false,
-					purchasing: false
-				})
-      ); */
 		const queryParams = [];
 		for (let i in this.state.ingredients) {
 			queryParams.push(
 				encodeURI(i) + '=' + encodeURI(this.state.ingredients[i])
 			);
 		}
+		queryParams.push('price=' + this.state.price);
 		const queryString = queryParams.join('&');
 		this.props.history.push({
 			pathname: '/checkout',
