@@ -10,7 +10,7 @@ const NavItems = () => (
 			</NavLink>
 		</li>
 		<li className='nav_item'>
-			<NavLink to='/checkout'>Checkout</NavLink>
+			<NavLink to='/orders'>Orders</NavLink>
 		</li>
 	</ul>
 );

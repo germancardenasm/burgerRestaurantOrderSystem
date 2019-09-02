@@ -4,6 +4,7 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Orders from './containers/Orders/Orders';
 const Checkout = React.lazy(() => import('./containers/Checkout/Checkout'));
 
 function App() {
@@ -11,7 +12,6 @@ function App() {
 		<div>
 			<Layout>
 				<Switch>
-					<Route path='/' exact component={BurgerBuilder} />
 					<Route
 						path='/checkout'
 						render={() => (
@@ -22,6 +22,8 @@ function App() {
 							</Suspense>
 						)}
 					/>
+					<Route path='/orders' exact component={Orders} />
+					<Route path='/' exact component={BurgerBuilder} />
 				</Switch>
 			</Layout>
 		</div>
