@@ -1,6 +1,4 @@
 import React from 'react';
-import Aux from '../../../hoc/Aux';
-import NavItem from './NavItem/NavItem';
 import { NavLink } from 'react-router-dom';
 import './NavItems.css';
 

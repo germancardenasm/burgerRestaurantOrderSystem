@@ -10,10 +10,10 @@ const CheckoutSummary = props => {
 			<div style={{ width: '100%', margin: 'auto' }}>
 				<BurgerGraphic ingredients={props.ingredients} />
 			</div>
-			<Button type='success' click>
+			<Button type='success' click={props.onCheckoutContinue}>
 				CONTINUE
 			</Button>
-			<Button type='danger' click>
+			<Button type='danger' click={props.onCheckoutCancel}>
 				CANCEL
 			</Button>
 		</div>
