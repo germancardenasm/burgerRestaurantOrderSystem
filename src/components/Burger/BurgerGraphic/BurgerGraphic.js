@@ -3,8 +3,8 @@ import Ingredient from '../Ingredient/Ingredient';
 import './BurgerGraphic.css';
 
 const BurgerGraphic = props => {
-	debugger;
 	let ingCompArr = [];
+
 	if (props.ingredients) {
 		ingCompArr = Object.keys(props.ingredients)
 			.map(ingType => {

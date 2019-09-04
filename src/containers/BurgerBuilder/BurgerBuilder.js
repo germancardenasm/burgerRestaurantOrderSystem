@@ -56,7 +56,6 @@ class BurgerBuilder extends Component {
 		);
 
 		if (this.props.ings) {
-			debugger;
 			burgerComponentes = (
 				<Aux>
 					<BurgerGraphic ingredients={this.props.ings} />
@@ -90,9 +89,9 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
 	return {
-		ings: state.ingredients,
-		price: state.price,
-		error: state.error
+		ings: state.burgerBuilder.ingredients,
+		price: state.burgerBuilder.price,
+		error: state.burgerBuilder.error
 	};
 };
 const mapDispatchToProps = dispatch => {
