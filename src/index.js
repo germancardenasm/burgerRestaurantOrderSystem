@@ -6,10 +6,10 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducer from './Store/reducer';
+import burgerBuilderReducer from './Store/reducers/burgerBuilderReducer';
 
 const store = createStore(
-	reducer /* preloadedState, */,
+	burgerBuilderReducer /* preloadedState, */,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
