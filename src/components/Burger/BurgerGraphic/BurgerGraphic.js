@@ -3,15 +3,20 @@ import Ingredient from '../Ingredient/Ingredient';
 import './BurgerGraphic.css';
 
 const BurgerGraphic = props => {
-	const ingCompArr = Object.keys(props.ingredients)
-		.map(ingType => {
-			return [...Array(props.ingredients[ingType])].map((_, i) => {
-				return <Ingredient type={ingType} key={ingType + i} />;
-			});
-		})
-		.reduce((acc, curr) => {
-			return acc.concat(curr);
-		}, []);
+	debugger;
+	let ingCompArr = [];
+	if (props.ingredients) {
+		ingCompArr = Object.keys(props.ingredients)
+			.map(ingType => {
+				return [...Array(props.ingredients[ingType])].map((_, i) => {
+					return <Ingredient type={ingType} key={ingType + i} />;
+				});
+			})
+			.reduce((acc, curr) => {
+				return acc.concat(curr);
+			}, []);
+	}
+
 	return (
 		<div className='burger'>
 			<Ingredient type='bread_top' />

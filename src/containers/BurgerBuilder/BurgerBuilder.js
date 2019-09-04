@@ -13,21 +13,11 @@ import * as burgerBuilderActions from '../../Store/actions/actionIndex';
 
 class BurgerBuilder extends Component {
 	state = {
-		purchasing: false,
-		loading: false,
-		error: false
+		purchasing: false
 	};
 
 	componentDidMount() {
-		/* axios
-			.get('https://burgerbuilder-gc.firebaseio.com/ingredients.json')
-			.then(response => {
-				console.dir('REPONSE', response);
-				this.setState({ ingredients: response.data });
-			})
-			.catch(error => {
-				this.setState({ error: true });
-			}); */
+		this.props.onInitIngredients();
 	}
 
 	setPurchaseAvailability = () => {
@@ -58,17 +48,15 @@ class BurgerBuilder extends Component {
 				purchase={this.placeOrder}
 			/>
 		);
-		if (this.state.loading) {
-			orderSumary = <Spinner />;
-		}
 
-		let burgerComponentes = this.state.error ? (
+		let burgerComponentes = this.props.error ? (
 			<p>Ingredients can not be loaded</p>
 		) : (
 			<Spinner />
 		);
 
 		if (this.props.ings) {
+			debugger;
 			burgerComponentes = (
 				<Aux>
 					<BurgerGraphic ingredients={this.props.ings} />
@@ -103,7 +91,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
 	return {
 		ings: state.ingredients,
-		price: state.price
+		price: state.price,
+		error: state.error
 	};
 };
 const mapDispatchToProps = dispatch => {
@@ -114,7 +103,8 @@ const mapDispatchToProps = dispatch => {
 
 		oningredientRemoved: ingName => {
 			dispatch(burgerBuilderActions.removeIngredient(ingName));
-		}
+		},
+		onInitIngredients: () => dispatch(burgerBuilderActions.initIngredient())
 	};
 };
 
