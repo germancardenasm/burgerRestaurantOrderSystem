@@ -7,19 +7,27 @@
 
 .input-element .input-label {
     font-family: inherit;
+    display: block;
     font-weight: bold;
 }
 
 .input-element .input {
+    outline: none;
     border: 1px solid #ccc;
-    padding: 10px;
-    width: 90%;
-    font-size: 1rem;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.input-element .select {
+.input-element:focus {
+    outline: none;
+    background-color: #ccc;
+}
 
-    width: 95%;
-    font-size: 1rem;
-    height: 40px;
+.input-element .invalid {
+
+    border: 1px solid red;
 }

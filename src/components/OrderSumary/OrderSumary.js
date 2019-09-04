@@ -21,10 +21,10 @@ const OrderSumary = props => {
 			<h5>Product: Hamburger</h5>
 			<ul>{ingredientSummary}</ul>
 			<p>Total: ${props.price.toFixed(2)}</p>
+			<Button click={props.purchase}>CONTINUE</Button>
 			<Button click={props.close} type={'danger'}>
 				CANCEL
 			</Button>
-			<Button click={props.purchase}>CONTINUE</Button>
 		</Aux>
 	);
 };

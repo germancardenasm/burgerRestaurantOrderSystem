@@ -4,6 +4,7 @@ import Button from '../../../components/UI/Button/Button';
 import axios from '../../../order-axios';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContacData extends Component {
 	state = {
@@ -14,7 +15,12 @@ class ContacData extends Component {
 					type: 'text',
 					placeholder: 'Enter Your Name'
 				},
-				value: ''
+				value: '',
+				validation: {
+					required: true
+				},
+				valid: false,
+				touched: false
 			},
 			street: {
 				inputtype: 'input',
@@ -22,7 +28,12 @@ class ContacData extends Component {
 					type: 'text',
 					placeholder: 'Enter Your Address'
 				},
-				value: ''
+				value: '',
+				validation: {
+					required: true
+				},
+				valid: false,
+				touched: false
 			},
 			zip: {
 				inputtype: 'input',
@@ -30,7 +41,14 @@ class ContacData extends Component {
 					type: 'text',
 					placeholder: 'Enter Your Zip Code'
 				},
-				value: ''
+				value: '',
+				validation: {
+					required: true,
+					minLength: 5,
+					maxLength: 5
+				},
+				valid: false,
+				touched: false
 			},
 			city: {
 				inputtype: 'input',
@@ -38,7 +56,12 @@ class ContacData extends Component {
 					type: 'text',
 					placeholder: 'Enter Your City'
 				},
-				value: ''
+				value: '',
+				validation: {
+					required: true
+				},
+				valid: false,
+				touched: false
 			},
 			email: {
 				inputtype: 'input',
@@ -46,7 +69,12 @@ class ContacData extends Component {
 					type: 'email',
 					placeholder: 'Enter Your Email'
 				},
-				value: ''
+				value: '',
+				validation: {
+					required: true
+				},
+				valid: false,
+				touched: false
 			},
 			deliveryMethod: {
 				inputtype: 'select',
@@ -56,9 +84,12 @@ class ContacData extends Component {
 						{ value: 'cheapest', displayValue: 'Cheapest' }
 					]
 				},
-				value: 'fastest'
+				value: 'fastest',
+				validation: {},
+				valid: true
 			}
 		},
+		formIsValid: false,
 		loading: false
 	};
 
@@ -72,7 +103,7 @@ class ContacData extends Component {
 			].value;
 		}
 		const order = {
-			ingredients: this.props.ingredients,
+			ingredients: this.props.ings,
 			price: this.props.price,
 			orderData: formData
 		};
@@ -91,12 +122,43 @@ class ContacData extends Component {
 			);
 	};
 
+	checkValidity = (value, rules) => {
+		let isValid = true;
+
+		if (rules.required) {
+			isValid = value.trim() !== '' && isValid;
+		}
+		if (rules.minLength) {
+			isValid = value.length >= rules.minLength && isValid;
+		}
+		if (rules.maxLength) {
+			isValid = value.length <= rules.maxLength && isValid;
+		}
+
+		return isValid;
+	};
+
 	inputHandler = (event, inputIdentifier) => {
 		const updatedOrderForm = { ...this.state.orderForm };
 		const updatedFormElement = { ...updatedOrderForm[inputIdentifier] };
 		updatedFormElement.value = event.target.value;
+		updatedFormElement.touched = true;
+		updatedFormElement.valid = this.checkValidity(
+			updatedFormElement.value,
+			updatedFormElement.validation
+		);
 		updatedOrderForm[inputIdentifier] = updatedFormElement;
-		this.setState({ orderForm: updatedOrderForm });
+
+		let formIsValid = true;
+		for (let inputIdentifier in updatedOrderForm) {
+			formIsValid =
+				updatedOrderForm[inputIdentifier].valid && formIsValid;
+		}
+
+		this.setState({
+			orderForm: updatedOrderForm,
+			formIsValid: formIsValid
+		});
 	};
 
 	render() {
@@ -117,11 +179,16 @@ class ContacData extends Component {
 						inputtype={element.setup.inputtype}
 						value={element.setup.value}
 						inputConfig={element.setup.inputConfig}
+						invalid={!element.setup.valid}
+						shouldValidate={element.setup.validation}
+						touched={element.setup.touched}
 						change={event => this.inputHandler(event, element.id)}
 					/>
 				))}
 
-				<Button type='success'>ORDER</Button>
+				<Button type='success' disabled={!this.state.formIsValid}>
+					ORDER
+				</Button>
 			</form>
 		);
 
@@ -137,5 +204,10 @@ class ContacData extends Component {
 		);
 	}
 }
-
-export default ContacData;
+const mapStateToProps = state => {
+	return {
+		ings: state.ingredients,
+		price: state.price
+	};
+};
+export default connect(mapStateToProps)(ContacData);
