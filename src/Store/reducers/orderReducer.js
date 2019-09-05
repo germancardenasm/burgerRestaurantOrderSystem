@@ -4,7 +4,8 @@ const initialState = {
 	orders: [],
 	loading: false,
 	purchased: false,
-	loadingOrders: true
+	loadingOrders: true,
+	loadingOrdersError: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +36,8 @@ const reducer = (state = initialState, action) => {
 		case actionType.PURCHASE_BURGER_FAIL:
 			return {
 				...state,
-				loading: false
+				loading: false,
+				loadingOrdersError: true
 			};
 
 		case actionType.GET_ORDERS_SUCCESS:

@@ -5,6 +5,7 @@ import Order from '../../components/Order/Order';
 import axios from '../../order-axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import { Redirect } from 'react-router';
 
 class Orders extends Component {
 	componentDidMount() {
@@ -13,11 +14,13 @@ class Orders extends Component {
 
 	render() {
 		let orders = <Spinner></Spinner>;
-		if (!this.props.loadingOrders) {
+		if (!this.props.ordersData.length) orders = <Redirect to='/' />;
+		else if (!this.props.loadingOrders) {
 			orders = this.props.ordersData.map(order => (
 				<Order key={order.id} {...order}></Order>
 			));
 		}
+
 		return <div>{orders}</div>;
 	}
 }
