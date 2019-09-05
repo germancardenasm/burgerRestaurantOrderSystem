@@ -7,10 +7,6 @@ import * as actions from '../../Store/actions/actionIndex';
 import { connect } from 'react-redux';
 
 class Checkout extends Component {
-	componentDidMount() {
-		this.props.onInitPurchase();
-	}
-
 	onCheckoutContinue = () => {
 		this.props.history.replace('/checkout/contact-data');
 	};
@@ -51,13 +47,4 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onInitPurchase: () => dispatch(actions.purchaseInit())
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withRouter(Checkout));
+export default connect(mapStateToProps)(withRouter(Checkout));

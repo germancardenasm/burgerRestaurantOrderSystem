@@ -3,7 +3,8 @@ import * as actionType from '../actions/actionsTypes';
 const initialState = {
 	orders: [],
 	loading: false,
-	purchased: false
+	purchased: false,
+	loadingOrders: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ const reducer = (state = initialState, action) => {
 		case actionType.PURCHASE_BURGER_START:
 			return {
 				...state,
-				loading: true
+				loading: true,
+				loadingOrders: true
 			};
 		case actionType.PURCHASE_BURGER_SUCCESS:
 			const newOrder = {
@@ -35,6 +37,20 @@ const reducer = (state = initialState, action) => {
 				...state,
 				loading: false
 			};
+
+		case actionType.GET_ORDERS_SUCCESS:
+			return {
+				...state,
+				orders: action.orders,
+				loadingOrders: false
+			};
+
+		case actionType.GET_ORDERS_FAIL:
+			return {
+				...state,
+				loadingOrders: false
+			};
+
 		default:
 			return {
 				...state
